@@ -77,12 +77,11 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'carzone_db',
         'USER': 'postgres',
         'PASSWORD': 'aridian890',
         'HOST':'localhost',
-        'PORT': '',
     }
 }
 
@@ -127,7 +126,8 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR,'carzone/media')
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
