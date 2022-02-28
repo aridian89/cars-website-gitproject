@@ -19,47 +19,46 @@
     <div class="container">
         <div class="search-area-inner">
             <div class="search-contents">
-                <form method="GET">
+                <form action="{% url 'search' %}" method="GET">
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-brand">
+                                <select class="selectpicker search-fields" name="make">
                                     <option disabled="disabled" selected="selected">Select Brand</option>
-                                    <option>Audi</option>
-                                    <option>BMW</option>
-                                    <option>Honda</option>
-                                    <option>Nissan</option>
+                                    {% for make in make %}
+                                      <option value="{{make}}">{{make}}</option>
+                                    {%endfor%}
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-make">
-                                    <option disabled="disabled" selected="selected">Select Make</option>
-                                    <option>BMW</option>
-                                    <option>Honda</option>
-                                    <option>Lamborghini Huracán</option>
-                                    <option>Sports Car</option>
+                                <select class="selectpicker search-fields" name="model">
+                                    <option disabled="disabled" selected="selected">Select Model</option>
+                                  {% for model in model %}
+                                    <option value="{{model}}">{{model}}</option>
+                                  {% endfor %}
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-location">
+                                <select class="selectpicker search-fields" name="cities">
                                     <option disabled="disabled" selected="selected">Select Location</option>
-                                    <option>United States</option>
-                                    <option>United Kingdom</option>
+                                    {% for cities in cities %}
+                                     <option value="{{cities}}">{{cities}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-year">
+                                <select class="selectpicker search-fields" name="year">
                                     <option disabled="disabled" selected="selected">Select Year</option>
-                                    <option>2016</option>
-                                    <option>2017</option>
-                                    <option>2018</option>
-                                    <option>2019</option>
+                                    {% for year in year %}
+                                     <option value="{{year}}">{{year}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -67,26 +66,30 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-type">
+                                <select class="selectpicker search-fields" name="body_type">
                                     <option disabled="disabled" selected="selected">Select Type Of Car</option>
-                                    <option>New Car</option>
-                                    <option>Used Car</option>
+                                    {% for body_type in body_type %}
+                                     <option value="{{body_type}}">{{body_type}}</option>
+                                    {% endfor %}
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="transmission">
+                                <select class="selectpicker search-fields" name="transmition">
                                     <option disabled="disabled" selected="selected">Transmission</option>
-                                    <option>Automatic</option>
-                                    <option>Manual</option>
+                                    {% for transmition in transmition %}
+                                     <option value="{{transmition}}">{{transmition}}</option>
+                                    {% endfor %}
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
                                 <div class="range-slider">
-                                    <div data-min="0" data-max="150000" data-unit="USD" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                    <div data-min="0" data-max="80000000" data-unit="PKR" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
