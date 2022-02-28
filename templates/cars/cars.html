@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load humanize %}
 {% load static %}
 <div class="sub-banner overview-bgi">
     <div class="container breadcrumb-area">
@@ -26,10 +27,10 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="car-box-3">
                             <div class="car-thumbnail">
-                                <a href="car-details.html" class="car-img">
+                                <a href="{% url 'car_detail' cars.id %}" class="car-img">
                                     <div class="tag">For Sale</div>
                                     <div class="price-box">
-                                        <span>{{ cars.price }}</span>
+                                        <span>{{ cars.price | intcomma}}</span>
                                     </div>
                                     <img class="d-block w-100" src="{{ cars.feature_image.url }}" alt="car" style="min-height:262px;max-height:262px;object-fit: contain;">
                                 </a>
@@ -70,16 +71,16 @@
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="car-details.html">{{ cars.model }}</a>
+                                    <a href="{% url 'car_detail' cars.id %}">{{ cars.model }}</a>
                                 </h1>
                                 <div class="location">
-                                    <a href="car-details.html">
+                                    <a href="{% url 'car_detail' cars.id %}">
                                         <i class="flaticon-pin"></i>{{ cars.cities }}
                                     </a>
                                 </div>
                                 <ul class="facilities-list clearfix">
                                     <li>{{ cars.fuel_type }}</li>
-                                    <li>{{ cars.milage }} km</li>
+                                    <li>{{ cars.milage | intcomma}} km</li>
                                     <li>{{ cars.transmition }}</li>
 
                                     <li>{{ cars.color }}</li>
@@ -93,18 +94,37 @@
 
                 <!-- Page navigation start -->
                 <div class="pagination-box p-box-2 text-center">
+
                     <nav aria-label="Page navigation example">
+                      {% if cars_data.has_other_pages %}
                         <ul class="pagination">
+                          {% if cars_data.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
+                                <a class="page-link"  href="?page={{cars_data.previous_page_numner}}"><i class="fa fa-angle-left"></i></a>
                             </li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link"><i class="fa fa-angle-left"></i></a>
+                            </li>
+                          {% endif %}
+                          {% for i in cars_data.paginator.page_range %}
+                            {% if cars_data.number == i %}
+                              <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
+                            {% else %}
+                              <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% endif %}
+                          {% endfor %}
+                          {% if cars_data.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                                <a class="page-link"  href="?page={{cars_data.next_page_numner}}"><i class="fa fa-angle-right"></i></a>
                             </li>
+                          {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link"><i class="fa fa-angle-right"></i></a>
+                            </li>
+                          {% endif %}
                         </ul>
+                        {% endif %}
                     </nav>
                 </div>
             </div>

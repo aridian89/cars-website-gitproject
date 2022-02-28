@@ -135,7 +135,7 @@
                 <div class="slick-slide-item">
                     <div class="car-box-3">
                         <div class="car-thumbnail">
-                            <a href="car-details.html" class="car-img">
+                            <a href="{% url 'car_detail' car.id %}" class="car-img">
                                 <div class="tag-2">Featured</div>
                                 <div class="price-box">
 
@@ -176,10 +176,10 @@
                         </div>
                         <div class="detail">
                             <h1 class="title">
-                                <a href="car-details.html">{{ car.model }}</a>
+                                <a href="{% url 'car_detail' car.id %}">{{ car.model }}</a>
                             </h1>
                             <div class="location">
-                                <a href="car-details.html">
+                                <a href="{% url 'car_detail' car.id %}">
                                     <i class="flaticon-pin"></i>{{ car.cities }}
                                 </a>
                             </div>
@@ -207,7 +207,7 @@
             </div>
         </div>
     </div>
-</div>
+
 <!-- Featured car end -->
 
 <!-- Rent car start -->
@@ -273,10 +273,10 @@
                     </div>
                     <div class="detail">
                         <h1 class="title">
-                            <a href="car-details.html">{{ car.model }}</a>
+                            <a href="{% url 'car_detail' car.id %}">{{ car.model }}</a>
                         </h1>
                         <div class="location">
-                            <a href="car-details.html">
+                            <a href="{% url 'car_detail' car.id %}">
                                 <i class="flaticon-pin"></i>{{ car.cities }},
                             </a>
                         </div>

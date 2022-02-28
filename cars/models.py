@@ -5,7 +5,13 @@ from multiselectfield import MultiSelectField
 
 # Create your models here.
 class Car(models.Model):
-
+    make_choices = (
+    ('Suzuki','Suzuki'),
+    ('Toyota','Toyota'),
+    ('Honda','Honda'),
+    ('Kia','Kia'),
+    ('Dahaitsu','Dahaitsu'),
+    )
     cities_choices = (
     ('ISB','Islamabad'),
     ('RWP','Rawalpindi'),
@@ -39,6 +45,7 @@ class Car(models.Model):
     assemble = models.CharField(max_length=100)
     engine_capacity = models.IntegerField()
     body_type = models.CharField(max_length=100)
+    make = models.CharField(choices=make_choices,default='Honda',max_length=200)
     features = MultiSelectField(choices=feature_choices,max_length=500)
     no_of_owner = models.IntegerField()
     price = models.IntegerField()
@@ -53,6 +60,7 @@ class Car(models.Model):
     car_photo_3 = models.ImageField(upload_to='photo/%Y/%m/%d/',blank=True)
     car_photo_4 = models.ImageField(upload_to='photo/%Y/%m/%d/',blank=True)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
+
 
     def __str__(self):
         return self.model

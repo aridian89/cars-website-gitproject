@@ -4,7 +4,7 @@ from .models import Car
 from django.utils.html import format_html
 # Register your models here.
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('thumbnail','model','year','color','milage','is_featured')
+    list_display = ('id','thumbnail','model','year','color','milage','is_featured')
     list_display_links = ('model','thumbnail')
     search_fields = ('model','year')
     list_filter = ('model','is_featured')
